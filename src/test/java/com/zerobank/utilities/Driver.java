@@ -12,11 +12,11 @@ public class Driver {
         if (driver==null){
             switch (ConfigurationReader.getProperty("browser")){
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/chromedriver");
+                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/Coolsis/zerobank-automation/chromedriver");
                     driver = new ChromeDriver();
                     break;
                 case "chrome_headless":
-                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/chromedriver");
+                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/Coolsis/zerobank-automation/chromedriver");
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(true);
                     driver = new ChromeDriver();
