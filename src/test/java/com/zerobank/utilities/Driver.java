@@ -1,5 +1,6 @@
 package com.zerobank.utilities;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,7 +13,9 @@ public class Driver {
         if (driver==null){
             switch (ConfigurationReader.getProperty("browser")){
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/Coolsis/zerobank-automation/chromedriver");
+//                    System.setProperty("webdriver.chrome.driver", "/Users/kadir/intellij-automation/Coolsis/zerobank-automation/chromedriver");
+//                    driver = new ChromeDriver();
+                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
                 case "chrome_headless":
