@@ -11,7 +11,8 @@ import org.junit.runner.RunWith;
         dryRun = false,
         tags = "@Account_Activity",
         plugin = {
-                "html:target/html-cucumber-reports"
+                "html:target/html-cucumber-reports",
+                "json:target/cucumber.json"
         }
 
 )
