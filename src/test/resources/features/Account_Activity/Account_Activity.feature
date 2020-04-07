@@ -1,3 +1,4 @@
+@Regression
 @Account_Activity
 Feature: Account Activity
   As a user should be able to see Account Activity page

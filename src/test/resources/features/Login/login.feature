@@ -1,3 +1,4 @@
+@Regression
 @Login
 Feature: Login
   As a user, I should be able to login zero bank application

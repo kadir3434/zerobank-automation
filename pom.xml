@@ -57,8 +57,6 @@
         </dependency>
 
 
-
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -71,22 +69,29 @@
             <version>1.2.17</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
+
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M4</version>
                 <configuration>
+                    <parallel>method</parallel>
+                    <forkMode>perthread</forkMode>
+                    <threadCount>10</threadCount>
+
                     <includes>
-                        <include>**/CukesRunner.java</include>
+                        <include>**/C*Runner*.java</include>
                     </includes>
-                    <rerunFailingTestsCount>1</rerunFailingTestsCount>
+                    <rerunFailingTestsCount>3</rerunFailingTestsCount>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
@@ -99,7 +104,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Cucumber HTML Reports</projectName>
+                            <projectName>ZeroBank Cucumber HTML Reports</projectName>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
@@ -111,6 +116,56 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>Regression</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <configuration>
+                            <parallel>methods</parallel>
+                            <forkMode>perthread</forkMode>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <threadCountMethods>10</threadCountMethods>
+
+                            <includes>
+                                <include>**/CucumberRunner.java</include>
+                            </includes>
+                            <testFailureIgnore>false</testFailureIgnore>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>net.masterthought</groupId>
+                        <artifactId>maven-cucumber-reporting</artifactId>
+                        <version>4.9.0</version>
+                        <executions>
+                            <execution>
+                                <id>execution</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <projectName>zerobank-automation Regression Reports</projectName>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <inputDirectory>${project.build.directory}</inputDirectory>
+                                    <jsonFiles>
+                                        <param>**/cucumber*.json</param>
+                                    </jsonFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>

@@ -1,5 +1,6 @@
 # new feature
 # Tags: optional
+@Regression
 @Account_Summary
 Feature: Account Summary
   As a user, I should be able to see Account Summary page
